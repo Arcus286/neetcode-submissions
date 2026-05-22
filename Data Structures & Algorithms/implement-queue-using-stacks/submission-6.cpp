@@ -1,0 +1,35 @@
+#include <stack>
+
+class MyQueue {
+public:
+    std::stack<int> st1; 
+    std::stack<int> st2; 
+
+    MyQueue() {
+
+    }
+
+    void push(int x) {
+        st1.push(x);
+    }
+
+    int pop() {
+        int a = peek();
+        st2.pop();
+        return a;
+    }
+
+    int peek() {
+        if(st2.empty()){
+            while(!st1.empty()){
+                st2.push(st1.top());
+                st1.pop();
+            }
+        }
+        return st2.top();
+    }
+
+    bool empty() {
+        return st1.empty() && st2.empty();
+    }
+};
